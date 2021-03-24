@@ -1,22 +1,23 @@
 package com.empMySql;
 
-public class emp {
+
+public class EmpModelClass {
     private String name;
     private int age;
     private String salary;
     private int Id;
 
-    public emp(String name, int age, String salary, int id) {
+    public EmpModelClass(String name, int age, String salary, int id) {
         this.name = name;
         this.age = age;
         this.salary = salary;
         Id = id;
     }
 
-    public emp() {
+    public EmpModelClass() {
     }
 
-    public emp(String name, int age, String salary) {
+    public EmpModelClass(String name, int age, String salary) {
         this.name = name;
         this.age = age;
         this.salary = salary;

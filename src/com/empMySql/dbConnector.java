@@ -8,7 +8,7 @@ public class dbConnector {
     Connection con = null;
     Statement stmnt = null;
 
-    public Connection open() {
+    public Connection conOpen() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/empdetails","root","root");
