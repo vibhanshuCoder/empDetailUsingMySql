@@ -1,13 +1,16 @@
 package com.empMySql;
+import java.io.*;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class QueryClass {
+    public BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public PrintStream Out = new PrintStream(new FileOutputStream(FileDescriptor.out));
     public String query;
     public EmpServices empServices = new EmpServices();
-   PreparedStatement preparedStatement;
-   Statement statement;
+    PreparedStatement preparedStatement;
+    Statement statement;
     dbConnector connector = new dbConnector();
     public Connection con1;
 
@@ -34,7 +37,7 @@ public class QueryClass {
 
 
     }
-    public  void viewFunc() throws SQLException,ClassNotFoundException{
+    public  void viewFunc() throws SQLException,ClassNotFoundException,IOException{
 
         try{
 
@@ -55,31 +58,34 @@ public class QueryClass {
              }
              else
              {
-                 System.out.println("no record to show");
+                 Out.println("no record to show");
              }
             }
             resultSet.close();
         }catch (Exception exception){
             exception.printStackTrace();
         }
+        empServices.homePage();
 
     }
-    public void deleteFunc()throws SQLException,ClassNotFoundException
+    public void deleteFunc()throws SQLException,ClassNotFoundException,IOException
     {
         query = "DELETE FROM Edetails";
         statement = con1.createStatement();
         statement.executeUpdate(query);
-        System.out.println("record deleted succesfully");
+        Out.println("record deleted succesfully");
+        empServices.homePage();
 
     }
-    public void deleteByIdFunc()throws SQLException,ClassNotFoundException{
-        Scanner sc = new Scanner(System.in);
-        int idref = sc.nextInt();
-        query = "delete from Edetails" +
-                "where Id = idref";
+    public void deleteByIdFunc()throws SQLException,ClassNotFoundException,IOException{
+
+        int idref = Integer.parseInt(br.readLine());
         statement = con1.createStatement();
+        query = "DELETE FROM Edetails WHERE ID = idref";
         statement.executeUpdate(query);
-        System.out.println("record deleted succesfully");
+        Out.println("record deleted succesfully");
+        empServices.homePage();
+
     }
 
 }
